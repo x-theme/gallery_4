@@ -30,7 +30,9 @@ if( empty( $all_banners ) ){
 				
 		$list[0][$i]['wr_subject'] = "empty subject";
 				
-		$list[0][$i]['wr_content'] = "empty content";		
+		$list[0][$i]['wr_content'] = "empty content";
+		
+		$list[0][$i]['url'] = "javascript:void(0)";
 	}
 	$total_banners = 0;
 }
