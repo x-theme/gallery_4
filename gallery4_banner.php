@@ -2,34 +2,37 @@
 /*
 THIS LATEST BANNER MUST ALWAYS HAVE 7 POSTS
 This banner should always have FAKE LAST BANNER as the first banner and FAKE FIRST BANNER as the last banner
-You can set the number of tables and what write tables you want to use using $banner_table array.
-
 
 	- bug no 1 : it will create error if the forum was not created.
 		-- solution: use x::posts() to get posts of the site regardless of forum existentce.
-	
+
+	--> as a solution to this bug, g::posts() function was applied and it will get 21 posts regardless of which bo_table is used.
+		- if the posts are not enough, it will create blank banners that says (empty subject, and empty content).
 */
 
-return;
+$post_list = g::posts( array( 
+				"limit"		=>	21,
+				"select"	=>	"idx,domain,bo_table,wr_id,wr_parent,wr_is_comment,wr_comment,ca_name,wr_datetime,wr_hit,wr_good,wr_nogood,wr_name,mb_id,wr_subject,wr_content"
+				) 
+			);
+$total_banners = ceil(count($post_list)/7);
 
-$banner_table = array( 1 , 2 , 3 , 4 );
-
-foreach( $banner_table as $bt ){	
-	$query = "SELECT wr_id, wr_subject, wr_content, wr_file FROM ".$g5['write_prefix'].x::board_id(etc::domain())."_".$bt."  ORDER BY wr_datetime DESC LIMIT 7";
-	$all_banners[] = db::rows($query);
+for( $post_num = 0; $post_num < $total_banners; $post_num ++ ){
+	$all_banners[] = array_slice($post_list, $post_num*7,7);
 }
 
 $count_banners = 0;
 
 foreach( $all_banners as $banner ){ 
 	for( $i = 0; $i < 7; $i ++ ){	
-		$temp_query = "SELECT * FROM g5_board_file WHERE wr_id = '".$banner[$i]['wr_id']."' AND bo_table = '".x::board_id(etc::domain())."_".($count_banners+1)."'";	
+		$temp_query = "SELECT * FROM g5_board_file WHERE wr_id = '".$banner[$i]['wr_id']."' AND bo_table = '".$banner[$i]['bo_table']."'";	
 		$temp_item = db::row($temp_query);
-		if( $temp_item['bf_width'] && file_exists(G5_DATA_PATH."/file/".x::board_id(etc::domain())."_".($count_banners+1)."/".$temp_item['bf_file']) ){		
-			
+		
+		if( $temp_item['bf_width'] && file_exists( G5_DATA_PATH."/file/".$banner[$i]['bo_table']."/".$temp_item['bf_file'] ) ){
+		
 		}
 		else{
-			$list[$count_banners][$i]['src'] = "no_image";		
+			$list[$count_banners][$i]['src'] = "no_image";					
 		}
 		if( $banner[$i]['wr_subject'] ) $list[$count_banners][$i]['wr_subject'] = $banner[$i]['wr_subject'];
 		else $list[$count_banners][$i]['wr_subject'] = "empty subject";
@@ -37,7 +40,10 @@ foreach( $all_banners as $banner ){
 		if( $banner[$i]['wr_content'] ) $list[$count_banners][$i]['wr_content'] = strip_tags($banner[$i]['wr_content']);
 		else $list[$count_banners][$i]['wr_content'] = "empty content";
 		
-		$list[$count_banners][$i]['wr_id'] = $banner[$i]['wr_id'];		
+		if( $banner[$i]['url'] ) $list[$count_banners][$i]['url'] = $banner[$i]['url'];		
+		
+		$list[$count_banners][$i]['wr_id'] = $banner[$i]['wr_id'];
+		$list[$count_banners][$i]['bo_table'] = $banner[$i]['bo_table'];
 	}
 	$count_banners++;
 }
@@ -48,15 +54,15 @@ foreach( $all_banners as $banner ){
 		<img class = 'banner_arrow left' src='<?=x::theme_url('img/banner_left_arrow.png')?>'/>
 		<img class = 'banner_arrow right' src='<?=x::theme_url('img/banner_right_arrow.png')?>'/>
 		<div class='inner2'>
-		<?for($white_img_count = 0; $white_img_count < count($banner_table) + 2; $white_img_count++ ){?>
+		<?for($white_img_count = 0; $white_img_count < count($all_banners) + 2; $white_img_count++ ){?>
 				<img class='white_bg' banner_num ='<?=$white_img_count?>' style='left:<?=$white_img_count*100?>%' src='<?=x::theme_url('img/white_bg.png')?>'/>
 			<?}?>	
 		<?
-			create_banner($list, 1);
-			for( $x = 0; $x < 4; $x ++ ){
+			create_banner( $list, count($all_banners)-1 );			
+			for( $x = 0; $x < $total_banners; $x ++ ){
 				create_banner($list, $x);
 			}
-			create_banner($list, count($banner_table)-1);
+			create_banner($list, 0);
 		?>
 		</div><!--/inner2-->
 	</div><!--/inner-->
@@ -68,7 +74,7 @@ foreach( $all_banners as $banner ){
 			<img class='stop' src='<?=x::theme_url('img/stop_button.png')?>'/>
 			<img class='play' src='<?=x::theme_url('img/play_button.png')?>'/>
 		</div>
-		<?for($bullet_count = 1; $bullet_count <= count( $banner_table ); $bullet_count++ ){?>
+		<?for($bullet_count = 1; $bullet_count <= count( $all_banners ); $bullet_count++ ){?>
 			<div class='bullet' banner_num ='<?=$bullet_count?>'>
 				<div class='time_limit'>
 				</div>
@@ -133,7 +139,7 @@ function create_banner($list, $x){
 					$no_image_upper = 'no_image';
 					$upper_content_length = 150;														
 				} else {						
-					$imgsrc_upper = get_list_thumbnail( x::board_id(etc::domain())."_".($x+1), $list[$x][$i]['wr_id'], 242.5, 230);														
+					$imgsrc_upper = get_list_thumbnail( $list[$x][$i]['bo_table'], $list[$x][$i]['wr_id'], 242.5, 230);														
 					$no_image_upper = null;
 					$upper_content_length = 80;
 				}
@@ -144,7 +150,7 @@ function create_banner($list, $x){
 					<?
 						if( $list[$x][$i]['wr_subject'] ) {
 							$subject = $list[$x][$i]['wr_subject'];
-							$url = G5_BBS_URL."/board.php?bo_table=ms_kokoro_".($x+1)."&wr_id=".$list[$x][$i]['wr_id'];
+							$url = $list[$x][$i]['url'];
 						}
 						else {
 							$subject = 'This page is empty.';
@@ -175,7 +181,7 @@ function create_banner($list, $x){
 				$no_image_last = 'no_image';
 				$last_content_length = 150;						
 			} else {											
-				$imgsrc_last = get_list_thumbnail( x::board_id(etc::domain())."_".($x+1), $list[$x][$i]['wr_id'], 242.5, 460);
+				$imgsrc_last = get_list_thumbnail( $list[$x][$i]['bo_table'], $list[$x][$i]['wr_id'], 242.5, 460);
 				$no_image_last = null;
 				$last_content_length = 80;						
 			}					
@@ -185,7 +191,7 @@ function create_banner($list, $x){
 					<?
 						if( $list[$x][$total_list_items]['wr_subject'] ) {
 							$subject = $list[$x][$total_list_items]['wr_subject'];
-							$url = G5_BBS_URL."/board.php?bo_table=ms_kokoro_".($x+1)."&wr_id=".$list[$x][$i]['wr_id'];
+							$url = $list[$x][$i]['url'];
 						}
 						else {
 							$subject = 'This page is empty.';

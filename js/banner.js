@@ -38,7 +38,7 @@ $(function(){
 		if( $(this).hasClass("right") ){			
 			if( $(window).width() > 640 ) animation_time = 500;
 			else animation_time = 0;
-			console.log($(window).width()+" "+animation_time);
+			
 			if( curr_banner == total_banner ){			
 				animation_move = "+=" + ( ( total_banner - 1 ) * 100 ) + "%";
 				curr_banner = 1;

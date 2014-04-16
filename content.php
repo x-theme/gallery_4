@@ -11,18 +11,11 @@
 <div class='post-full-image-wrapper'>
 	<div class='inner'>
 	<?php
-		if ( !($menus = x::menus('left')) ) $menus = x::menus(); 
-			
-
 	include widget(
 		array(
 			'code'		=> 'post-full-image',
 			'name'		=> 'post-full-image',
 			'git'		=> 'https://github.com/x-widget/post-full-image',
-			'height' 	=> 280,
-			'width'		=> 270,
-			'title_colors' => array( '#ff9b38', '#ffaf30', '#ec5c60', '#bb8df4', '#ff7271', '#ffaf30', '#ff7271', '#b1c516', '#70bcd2', '#8ba6ff' ),
-			'menus'		=> $menus,
 		)
 	);
 	?>
@@ -43,45 +36,16 @@
 
 
 <div class='post-with-image-2-wrapper'>
-		<div class='panel-titles'>Panel Title</div>
 	<div class='inner'>
-		<?	
-			$i = 0;
-			$posts_image_2 = x::menus('right'); 			
-			?>
-			<div class='image2-menu-wrapper'>
-			
-				<div class='image-2-previous'><img src="<?=x::theme_url('img/image2_left_arrow.png')?>"/></div>
-			
-				<div class='image-2-menu'><?
-					foreach ( $posts_image_2 as $menu ) { ?> 
-						<span class='image2-menu-name <? if ( $i++ == 0 ) echo "selected first-menu"?>' menu2_name="<?=$menu['url']?>">
-							<span class='inner'>
-								<img src="<?=x::theme_url('img/category_'.$i.'.png')?>" class='not-active-background'/>
-								<img src="<?=x::theme_url('img/category_'.$i.'b.png')?>" class='active-background'/>
-								<div class='menu2_name'><?=$menu['name']?></div>
-							</span>
-						</span> <? } ?>
-					<div style='clear: left'></div>
-				</div>
-				
-				<div class='image-2-next'><img src="<?=x::theme_url('img/image2_right_arrow.png')?>"/></div>
-				<div style='clear: left'></div>
-				
-			</div>
-			<? $i = 0;
-			foreach ( $posts_image_2 as $post ) {
-				$option = array(
-
-					"width" => 170,
-					"height" => 360,
-
-				);
-		?>
-		<div class='post-with-image-2 <?=$post['url']?> <? if ( $i++ == 0 ) echo "selected"?>'>
-			<?=latest('x-latest-gallery4-posts-with-image-2', $post['url'], 10, 25, $cache_time=1, $option)?>
-		</div>	
-		<? } ?>
+	<?php		
+		include widget(
+			array(
+				'code'		=> 'post-with-image-2',
+				'name'		=> 'post-with-image-2',
+				'git'		=> 'https://github.com/x-widget/post-with-image-2',
+			)
+		);
+	?>		
 	</div>
 </div>
 
@@ -107,7 +71,7 @@
 				<?php
 					include widget(
 						array(
-							'code'		=> 'left_lower_posts',
+							'code'		=> 'left_lower_posts_1',
 							'name'		=> 'x-gallery-4-lower-posts',
 							'git'		=> 'https://github.com/x-widget/x-gallery-4-lower-posts'
 						)
@@ -118,7 +82,7 @@
 				<?php
 					include widget(
 						array(
-							'code'		=> 'left_lower_posts',
+							'code'		=> 'left_lower_posts_2',
 							'name'		=> 'x-gallery-4-lower-posts',
 							'git'		=> 'https://github.com/x-widget/x-gallery-4-lower-posts'
 						)
@@ -129,7 +93,7 @@
 				<?php
 					include widget(
 						array(
-							'code'		=> 'left_lower_posts',
+							'code'		=> 'left_lower_posts_3',
 							'name'		=> 'x-gallery-4-lower-posts',
 							'git'		=> 'https://github.com/x-widget/x-gallery-4-lower-posts'
 						)
@@ -140,7 +104,7 @@
 				<?php
 					include widget(
 						array(
-							'code'		=> 'left_lower_posts',
+							'code'		=> 'left_lower_posts_4',
 							'name'		=> 'x-gallery-4-lower-posts',
 							'git'		=> 'https://github.com/x-widget/x-gallery-4-lower-posts'
 						)
@@ -154,7 +118,7 @@
 				<?php
 					include widget(
 						array(
-							'code'		=> 'right_lower_posts',
+							'code'		=> 'right_lower_posts_5',
 							'name'		=> 'x-gallery-4-lower-posts',
 							'git'		=> 'https://github.com/x-widget/x-gallery-4-lower-posts'
 						)
@@ -165,7 +129,7 @@
 				<?php
 					include widget(
 						array(
-							'code'		=> 'right_lower_posts',
+							'code'		=> 'right_lower_posts_6',
 							'name'		=> 'x-gallery-4-lower-posts',
 							'git'		=> 'https://github.com/x-widget/x-gallery-4-lower-posts'
 						)

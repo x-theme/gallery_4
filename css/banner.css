@@ -1,8 +1,7 @@
 .banner_container{
 	overflow:hidden;
 	width:100%;
-	position:relative;
-	margin-bottom:40px;
+	position:relative;	
 }
 
 .banner_container .banner_arrow{
@@ -56,8 +55,7 @@
 	max-width:970px;
 	margin:0 auto 10px auto;	
 	padding:10px 0;
-	background-color:#e6e6e6;
-	display:none;
+	background-color:#e6e6e6;	
 }
 
 .tablet_control .inner{
@@ -212,10 +210,6 @@
 @media all and ( max-width:657px ){
 	.banner_container{	
 		margin-bottom:0;
-	}
-
-	.tablet_control{	
-		display:block;
 	}
 
 	.latest_banner .image_group.left{
