@@ -12,7 +12,8 @@ This banner should always have FAKE LAST BANNER as the first banner and FAKE FIR
 
 $post_list = g::posts( array( 
 				"limit"		=>	21,
-				"select"	=>	"idx,domain,bo_table,wr_id,wr_parent,wr_is_comment,wr_comment,ca_name,wr_datetime,wr_hit,wr_good,wr_nogood,wr_name,mb_id,wr_subject,wr_content"
+				"select"	=>	"idx,domain,bo_table,wr_id,wr_parent,wr_is_comment,wr_comment,ca_name,wr_datetime,wr_hit,wr_good,wr_nogood,wr_name,mb_id,wr_subject,wr_content",
+				"domain"	=>  etc::domain(),
 				) 
 			);
 $total_banners = ceil(count($post_list)/7);
