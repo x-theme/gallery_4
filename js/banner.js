@@ -76,7 +76,12 @@ $(function(){
 		$(".tablet_control .bullet.enabled .time_limit").css("width", "12.5%");
 	});
 	
-	banner_interval = setInterval(function(){rotate_banner( total_banner )},1000);
+	if ( total_banner>1 ) banner_interval = setInterval(function(){rotate_banner( total_banner )},1000);
+	else {
+		$(".tablet_control").css('display','none');
+		$(".banner_arrow").css('display','none');
+		$(".middle-banner").css('margin-top','10px');
+	}
 	
 	$(".tablet_control .control_button .stop").click(function(){
 		clearInterval( banner_interval );
