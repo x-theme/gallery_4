@@ -5,11 +5,8 @@
 		<div class='footer'>
 			<div class='footer-logo'>
 				<div class='inner'>
-				<?
-				if( file_exists( x::path_file( "gallery_4_footer_logo" ) ) ) $img = "<img src='".x::url_file('gallery_4_footer_logo')."' />";
-				else $img = "<img src='".x::url_theme()."/img/footer_logo_default.png' />";
-				echo $img;
-				?>
+				<?	if( file_exists( x::path_file( "gallery4_footer_logo" ) ) ) echo "<img src='".x::url_file( "gallery4_footer_logo" )."'>";
+				else { ?> <img src='".x::url_theme()."/img/footer_logo_default.png' /> <? }	?>
 				</div>
 			</div>
 			<div class='footer-right'>

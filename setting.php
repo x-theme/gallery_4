@@ -33,6 +33,24 @@
 	<table cellspacing='0' cellpadding='0' width='100%'>
 		<tr>
 			<td width='50%'>
+				<div class='image-title'>
+					<img src='<?=module('img/img-icon.png')?>'>사이트 로고				
+				</div>
+				<div class='image-upload'>
+				<?
+					if( file_exists( path_logo() ) ) echo "<img src='".url_logo()."'>";
+					else {
+				?>
+					<div class='setting-no-image'><img class='no-image' src='<?=x::url()?>/module/<?=$module?>/img/no-image.png'><br>
+					[가로 250px X 세로 100px]</div>
+				<?
+					}
+				?>
+					<input type='file' name='<?=code_logo()?>'>
+					<input type='checkbox' name='<?=code_logo()?>_remove' value='y'><span class='title-small'>이미지 제거</span>
+				</div>
+			</td>
+			<td width='50%'>
 			<div class='image-title'><img src='<?=module('img/img-icon.png')?>'>사이트 하단 로고</div>
 			<div class='image-upload'>
 			<?	if( file_exists( x::path_file( "gallery4_footer_logo" ) ) ) echo "<img src='".x::url_file( "gallery4_footer_logo" )."'>";
@@ -42,6 +60,17 @@
 			</div>
 			</td>
 		<tr>
+		<tr>
+			<td width='50%'>
+			<div class='image-title'><img src='<?=module('img/img-icon.png')?>'>MIDDLE BANNER</div>
+			<div class='image-upload'>
+			<?	if( file_exists( x::path_file( "gallery4_middle_banner" ) ) ) echo "<img src='".x::url_file( "gallery4_middle_banner" )."'>";
+				else { ?> <div class='setting-no-image'><img class='no-image' src='<?=x::url()?>/module/<?=$module?>/img/no-image.png'><br>[가로 970px X 세로 160px]</div> <?}?>
+				<input type='file' name='gallery4_middle_banner'>
+				<input type='checkbox' name='gallery4_middle_banner_remove' value='y'><span class='title-small'>이미지 제거</span>
+			</div>
+			</td>
+		</tr>
 	</table>
 </div>
 	<input type='submit' value='업데이트'>

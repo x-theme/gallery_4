@@ -4,7 +4,8 @@
 
 <div class='middle-banner-wrapper'>
 	<div class='middle-banner'>
-		<img src="<?=x::theme_url('img/no_banner.png')?>"/>
+		<?	if( file_exists( x::path_file( "gallery4_middle_banner" ) ) ) echo "<img src='".x::url_file( "gallery4_middle_banner" )."'>";
+			else { ?> <img src="<?=x::theme_url('img/no_banner.png')?>"/> <? } ?>
 	</div>
 </div>
 

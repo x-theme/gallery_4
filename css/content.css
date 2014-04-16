@@ -62,7 +62,7 @@
 
 
 .content .latest-comments-wrapper {
-
+	margin-bottom: 10px;
 }
 
 .latest-comments-wrapper .inner {
@@ -81,6 +81,7 @@
 .lower_posts_wrapper{
 	max-width:970px;
 	margin:auto;
+	
 }
 
 .lower_posts_wrapper .inner .left, .lower_posts_wrapper .inner .right {
