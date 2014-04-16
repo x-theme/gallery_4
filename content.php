@@ -67,7 +67,7 @@
 <div class='lower_posts_wrapper'>
 	<div class='inner'>
 		<div class='left'>
-			<div class='left_item first'>
+			<div class='left_item first item_1'>
 				<?php
 					include widget(
 						array(
@@ -78,7 +78,7 @@
 					);
 				?>
 			</div>
-			<div class='left_item'>
+			<div class='left_item item_2'>
 				<?php
 					include widget(
 						array(
@@ -89,7 +89,7 @@
 					);
 				?>
 			</div>
-			<div class='left_item first'>
+			<div class='left_item first item_3'>
 				<?php
 					include widget(
 						array(
@@ -100,7 +100,7 @@
 					);
 				?>
 			</div>
-			<div class='left_item'>
+			<div class='left_item item_4'>
 				<?php
 					include widget(
 						array(

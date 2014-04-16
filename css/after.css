@@ -5,7 +5,24 @@
 
 /* x-latest-gallery4-post-with-image */
 @media (max-width:  970px) {
-
+	.lower_posts_wrapper .inner .right {
+		display: none;
+	}
+	
+	.lower_posts_wrapper .inner .left {
+		width: 100%;
+	}
+	
+	.lower_posts_wrapper .inner .left .item_4 {
+		display: none;
+	}
+	
+	.lower_posts_wrapper .inner .left_item {
+		width: 32.8% !important;
+		margin: 0 !important;
+		margin-left: 0.4% !important;
+	}
+	
 	.top-wrapper .top ul {
 		display: none;
 	}
@@ -53,7 +70,15 @@
 
 
 @media (max-width: 640px) {
-
+	.lower_posts_wrapper .inner .left .item_3 {
+		display: none;
+	}
+	
+	.lower_posts_wrapper .inner .left_item {
+		width: 49.4% !important;
+		margin: 0 !important;
+		margin-left: 0.4% !important;
+	}
 
 	
 	.footer .footer-logo, .footer .footer-menu {
