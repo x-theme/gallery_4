@@ -22,31 +22,43 @@ for( $post_num = 0; $post_num < $total_banners; $post_num ++ ){
 	$all_banners[] = array_slice($post_list, $post_num*7,7);
 }
 
+$total_banners = $total_banners - 1;
 $count_banners = 0;
-
-foreach( $all_banners as $banner ){ 
-	for( $i = 0; $i < 7; $i ++ ){	
-		$temp_query = "SELECT * FROM g5_board_file WHERE wr_id = '".$banner[$i]['wr_id']."' AND bo_table = '".$banner[$i]['bo_table']."'";	
-		$temp_item = db::row($temp_query);
-		
-		if( $temp_item['bf_width'] && file_exists( G5_DATA_PATH."/file/".$banner[$i]['bo_table']."/".$temp_item['bf_file'] ) ){
-		
-		}
-		else{
-			$list[$count_banners][$i]['src'] = "no_image";					
-		}
-		if( $banner[$i]['wr_subject'] ) $list[$count_banners][$i]['wr_subject'] = $banner[$i]['wr_subject'];
-		else $list[$count_banners][$i]['wr_subject'] = "empty subject";
-		
-		if( $banner[$i]['wr_content'] ) $list[$count_banners][$i]['wr_content'] = strip_tags($banner[$i]['wr_content']);
-		else $list[$count_banners][$i]['wr_content'] = "empty content";
-		
-		if( $banner[$i]['url'] ) $list[$count_banners][$i]['url'] = $banner[$i]['url'];		
-		
-		$list[$count_banners][$i]['wr_id'] = $banner[$i]['wr_id'];
-		$list[$count_banners][$i]['bo_table'] = $banner[$i]['bo_table'];
+if( empty( $all_banners ) ){
+	for( $i = 0; $i < 7; $i ++ ){			
+		$list[0][$i]['src'] = "no_image";					
+				
+		$list[0][$i]['wr_subject'] = "empty subject";
+				
+		$list[0][$i]['wr_content'] = "empty content";		
 	}
-	$count_banners++;
+	$total_banners = 0;
+}
+else{
+	foreach( $all_banners as $banner ){ 	
+		for( $i = 0; $i < 7; $i ++ ){	
+			$temp_query = "SELECT * FROM g5_board_file WHERE wr_id = '".$banner[$i]['wr_id']."' AND bo_table = '".$banner[$i]['bo_table']."'";	
+			$temp_item = db::row($temp_query);
+			
+			if( $temp_item['bf_width'] && file_exists( G5_DATA_PATH."/file/".$banner[$i]['bo_table']."/".$temp_item['bf_file'] ) ){
+			
+			}
+			else{
+				$list[$count_banners][$i]['src'] = "no_image";					
+			}
+			if( $banner[$i]['wr_subject'] ) $list[$count_banners][$i]['wr_subject'] = $banner[$i]['wr_subject'];
+			else $list[$count_banners][$i]['wr_subject'] = "empty subject";
+			
+			if( $banner[$i]['wr_content'] ) $list[$count_banners][$i]['wr_content'] = strip_tags($banner[$i]['wr_content']);
+			else $list[$count_banners][$i]['wr_content'] = "empty content";
+			
+			if( $banner[$i]['url'] ) $list[$count_banners][$i]['url'] = $banner[$i]['url'];		
+			
+			$list[$count_banners][$i]['wr_id'] = $banner[$i]['wr_id'];
+			$list[$count_banners][$i]['bo_table'] = $banner[$i]['bo_table'];
+		}
+		$count_banners++;
+	}
 }
 
 ?>
@@ -55,12 +67,12 @@ foreach( $all_banners as $banner ){
 		<img class = 'banner_arrow left' src='<?=x::theme_url('img/banner_left_arrow.png')?>'/>
 		<img class = 'banner_arrow right' src='<?=x::theme_url('img/banner_right_arrow.png')?>'/>
 		<div class='inner2'>
-		<?for($white_img_count = 0; $white_img_count < count($all_banners) + 2; $white_img_count++ ){?>
+		<?for($white_img_count = 0; $white_img_count < $total_banners + 3; $white_img_count++ ){?>
 				<img class='white_bg' banner_num ='<?=$white_img_count?>' style='left:<?=$white_img_count*100?>%' src='<?=x::theme_url('img/white_bg.png')?>'/>
 			<?}?>	
-		<?
-			create_banner( $list, count($all_banners)-1 );			
-			for( $x = 0; $x < $total_banners; $x ++ ){
+		<?		
+			create_banner( $list, $total_banners );
+			for( $x = 0; $x <= $total_banners; $x ++ ){
 				create_banner($list, $x);
 			}
 			create_banner($list, 0);
@@ -75,7 +87,7 @@ foreach( $all_banners as $banner ){
 			<img class='stop' src='<?=x::theme_url('img/stop_button.png')?>'/>
 			<img class='play' src='<?=x::theme_url('img/play_button.png')?>'/>
 		</div>
-		<?for($bullet_count = 1; $bullet_count <= count( $all_banners ); $bullet_count++ ){?>
+		<?for($bullet_count = 1; $bullet_count <= $total_banners+1; $bullet_count++ ){?>
 			<div class='bullet' banner_num ='<?=$bullet_count?>'>
 				<div class='time_limit'>
 				</div>
@@ -125,17 +137,18 @@ foreach( $all_banners as $banner ){
 <?
 function create_banner($list, $x){
 ?>
-<div class='banner' banner_num = '<?=$x?>'>			
+<div class='banner' banner_num = '<?=$x?>'>
 	<div class='latest_banner'>
 		<div class='image_group left'>				
-	<?php
+	<?php	
 		if ( $list ) {					
 			$count = 1;
 			$total_list_items = 7 - 1;
-			for( $i = 0; $i < $total_list_items; $i++ ) {
+			for( $i = 0; $i < $total_list_items; $i++ ) {			
 	?>					
 			<?													
-				if ( $list[$x][$i]['src'] == 'no_image'){							
+				//echo "<script>alert('a $x');</script>";
+				if ( $list[$x][$i]['src'] == 'no_image'){					
 					$imgsrc_upper['src'] = x::url_theme().'/img/no_image_1.png';				
 					$no_image_upper = 'no_image';
 					$upper_content_length = 150;														
