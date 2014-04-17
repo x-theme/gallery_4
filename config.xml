@@ -3,6 +3,7 @@
 	<id>theme gallery-4</id>
 	<type>theme</type>
 	<view>pc,mobile</view>
+	<category>gallery</category>
 	<name>
 		<en>Gallery Theme No. 4 (Git version)</en>
 		<ko>Gallery Theme No. 4 (Git version)</ko>
