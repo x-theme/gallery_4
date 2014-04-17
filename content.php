@@ -4,8 +4,12 @@
 
 <div class='middle-banner-wrapper'>
 	<div class='middle-banner'>
-		<?	if( file_exists( x::path_file( "gallery4_middle_banner" ) ) ) echo "<img src='".x::url_file( "gallery4_middle_banner" )."'>";
-			else { ?> <img src="<?=x::theme_url('img/no_banner.png')?>"/> <? } ?>
+		<?	if( file_exists( x::path_file( "gallery4_middle_banner" ) ) ) $gallery4_banner_src = "<img src='".x::url_file( "gallery4_middle_banner" )."'>";
+			else $gallery4_banner_src = "<img src='".x::theme_url('img/no_banner.png')."'/>";
+			
+			if ( !$gallery4_banner_url = x::meta("gallery4_middle_banner_url") ) $gallery4_banner_url = "http://wwww.philgo.net";
+			echo "<a href='$gallery4_banner_url' target='_blank'> $gallery4_banner_src </a>";
+		?>
 	</div>
 </div>
 
