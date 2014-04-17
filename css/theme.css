@@ -24,7 +24,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 }
 
 .mobile-menu-wrapper {
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	background: #45454a;
