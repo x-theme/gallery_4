@@ -80,6 +80,15 @@
 	text-align: center;
 }
 
+.header .main-menu ul li:hover a {
+	color: #ff7334;
+}
+
+.header .main-menu ul li.selected a {
+	font-weight: bold;
+	color: #ff7334;
+}
+
 .header .main-menu ul li img {
 	margin-bottom: 10px;
 	height: 24px;
@@ -88,6 +97,7 @@
 
 .main-menu a {
 	display: block;
+	text-decoration: none;
 }
 
 /* Header - Mobile Menu */

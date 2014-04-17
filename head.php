@@ -115,7 +115,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 						<? foreach ( $main_menu as $menu ) { 
 							$url = g::url().'/bbs/board.php?bo_table='.$menu['url'];
 						?>
-							<li>
+							<li <? if ( $bo_table == $menu['url'] ) echo "class=selected"?>>
 								<a href="<?=$url?>"><img src="<?=x::theme_url('img/menu_'.$i++.'.png')?>"/></a>
 								<a href="<?=$url?>"><?=$menu['name']?></a>
 							</li>
