@@ -57,10 +57,16 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 				<? } ?>
 			</ul>
 			<? if ( login() ) { ?>
-				<div class='login-logout'>
-				
+				<div class='login-logout login'>
+					<div class='mobile-logout'><a href='<?=G5_BBS_URL?>/logout.php'>로그아웃</a></div>
+					<div class='mobile-edit-profile'><a href='<?=G5_BBS_URL?>/member_confirm.php?url=register_form.php'>회원정보수정</a></div>
 				</div>
-			<? } ?> 		
+			<? } else { ?>
+				<div class='login-logout logout'>
+					<div class='mobile-login'><a href='<?=G5_BBS_URL?>/login.php'>로그인</a></div>
+					<div class='mobile-register'><a href='<?=G5_BBS_URL?>/register.php'>회원가입</a></div>
+				</div>
+			<? } ?>
 		</div>
 
 	</div><!--mobile-menu-wrapper-->

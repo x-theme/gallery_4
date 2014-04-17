@@ -108,6 +108,7 @@
 	display: none;
 }
 
+
 .header .mobile-menu-button .inner {
 	padding: 9px 0 0 15px ;
 }
@@ -185,4 +186,22 @@
 	box-shadow: inset 0 1px 3px #202022;
 	padding: 5px;
 	max-width: 140px;
+}
+
+/* MOBILE MENU */
+.mobile-menu-wrapper .login-logout {
+	text-align: center;
+}
+
+.mobile-menu-wrapper .login-logout > div {
+	border: solid 1px #28282c;
+	background: #505055;
+	width: 120px;
+	padding: 10px 20px;
+	text-align: center;
+	margin: 10px auto 0 auto;
+}
+
+.mobile-menu-wrapper .login-logout > div a {
+	color: #999999;
 }
