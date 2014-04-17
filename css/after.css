@@ -5,9 +5,6 @@
 
 /* x-latest-gallery4-post-with-image */
 @media (max-width:  970px) {
-	.lower_posts_wrapper .inner .right {
-		display: none;
-	}
 	
 	.lower_posts_wrapper .inner .left {
 		width: 100%;

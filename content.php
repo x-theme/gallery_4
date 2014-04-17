@@ -68,7 +68,7 @@
 <div class='lower_posts_wrapper'>
 	<div class='inner'>
 		<div class='left'>
-			<div class='left_item first item_1'>
+			<div class='left_item item_1'>
 				<?php
 					include widget(
 						array(
@@ -90,7 +90,7 @@
 					);
 				?>
 			</div>
-			<div class='left_item first item_3'>
+			<div class='left_item item_3'>
 				<?php
 					include widget(
 						array(
@@ -114,31 +114,5 @@
 			</div>
 			<div style='clear:both'></div>
 		</div>
-		<div class='right'>
-			<div class='right_item first'>
-				<?php
-					include widget(
-						array(
-							'code'		=> 'right_lower_posts_5',
-							'name'		=> 'x-gallery-4-lower-posts',
-							'git'		=> 'https://github.com/x-widget/x-gallery-4-lower-posts'
-						)
-					);
-				?>
-			</div>
-			<div class='right_item'>
-				<?php
-					include widget(
-						array(
-							'code'		=> 'right_lower_posts_6',
-							'name'		=> 'x-gallery-4-lower-posts',
-							'git'		=> 'https://github.com/x-widget/x-gallery-4-lower-posts'
-						)
-					);
-				?>				
-			</div>
-			<div style='clear:both'></div>
-		</div>
-		<div style='clear:both'></div>
 	</div>
 </div> 

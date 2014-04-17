@@ -35,8 +35,10 @@
 
 
 <link rel="stylesheet" href="<?=x::theme_url('css/after.css')?>">
-
-<? if ( $_SERVER['SCRIPT_NAME'] != '/index.php' ) { ?>
+<?	/**
+		Add max-width: 970px to .content div if current page is not index.
+	*/
+	if ( (basename($_SERVER['SCRIPT_NAME']) != 'index.php') || $in['module'] ) { ?>
 	<style>
 		.layout .content {
 			max-width: 970px;
