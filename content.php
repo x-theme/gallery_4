@@ -20,6 +20,7 @@
 		array(
 			'code'		=> 'post-full-image',
 			'name'		=> 'post-full-image',
+			'default_forum_id'	=> bo_table(1),
 			'git'		=> 'https://github.com/x-widget/post-full-image',
 		)
 	);
@@ -33,6 +34,7 @@
 			array(
 				'code'		=> 'post-with-image',
 				'name'		=> 'post-with-image',
+			'default_forum_id'	=> bo_table(2),
 				'git'		=> 'https://github.com/x-widget/post-with-image',
 			)
 		);
@@ -47,6 +49,7 @@
 			array(
 				'code'		=> 'post-with-image-2',
 				'name'		=> 'post-with-image-2',
+			'default_forum_id'	=> bo_table(3),
 				'git'		=> 'https://github.com/x-widget/post-with-image-2',
 			)
 		);
@@ -78,6 +81,7 @@
 						array(
 							'code'		=> 'left_lower_posts_1',
 							'name'		=> 'x-gallery-4-lower-posts',
+							'default_forum_id'	=> bo_table(4),
 							'git'		=> 'https://github.com/x-widget/x-gallery-4-lower-posts'
 						)
 					);
@@ -89,6 +93,7 @@
 						array(
 							'code'		=> 'left_lower_posts_2',
 							'name'		=> 'x-gallery-4-lower-posts',
+							'default_forum_id'	=> bo_table(5),
 							'git'		=> 'https://github.com/x-widget/x-gallery-4-lower-posts'
 						)
 					);
@@ -100,6 +105,7 @@
 						array(
 							'code'		=> 'left_lower_posts_3',
 							'name'		=> 'x-gallery-4-lower-posts',
+							'default_forum_id'	=> bo_table(6),
 							'git'		=> 'https://github.com/x-widget/x-gallery-4-lower-posts'
 						)
 					);
@@ -111,6 +117,7 @@
 						array(
 							'code'		=> 'left_lower_posts_4',
 							'name'		=> 'x-gallery-4-lower-posts',
+							'default_forum_id'	=> bo_table(7),
 							'git'		=> 'https://github.com/x-widget/x-gallery-4-lower-posts'
 						)
 					);
