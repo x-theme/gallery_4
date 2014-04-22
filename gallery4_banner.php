@@ -122,6 +122,10 @@ else{
 		padding-right:4px;
 	}	
 	
+	.latest_banner .image_group.left .image_wrapper{
+		display:inline;
+	}
+	
 	.latest_banner  .image_group.left{
 		width:727px;
 	}
@@ -146,7 +150,9 @@ function create_banner($list, $x){
 		if ( $list ) {					
 			$count = 1;
 			$total_list_items = 7 - 1;
-			for( $i = 0; $i < $total_list_items; $i++ ) {			
+			for( $i = 0; $i < $total_list_items; $i++ ) {	
+			if( $count == 3 || $count == 6 ) $no_margin_right = 'no-margin-right';
+			else $no_margin_right = null;
 	?>					
 			<?													
 				//echo "<script>alert('a $x');</script>";
@@ -162,7 +168,7 @@ function create_banner($list, $x){
 										
 				
 			?>
-				<div class='image_wrapper item_no_<?=$count?>'>
+				<div class='image_wrapper item_no_<?=$count?> <?=$no_margin_right?>'>
 					<?
 						if( $list[$x][$i]['wr_subject'] ) {
 							$subject = $list[$x][$i]['wr_subject'];

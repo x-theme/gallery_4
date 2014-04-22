@@ -111,6 +111,7 @@
 .latest_banner .image_group.left{
 	width:75%;
 	float:left;
+	white-space:normal;	
 }
 
 .latest_banner .image_group.right{
@@ -120,8 +121,13 @@
 
 .latest_banner  .image_group.left .image_wrapper{
 	position:relative;
-	width:33.33333333%;
-	float:left;
+	width:33.33333333%;		
+	display:inline-block;
+	margin-right:-4px;
+}
+
+.latest_banner  .image_group.left .image_wrapper.no-margin-right{
+	margin-right:0;
 }
 
 .latest_banner  .image_group.right .image_wrapper{
@@ -214,6 +220,11 @@
 
 	.latest_banner .image_group.left{
 		width:100%;
+	}
+	
+	.latest_banner .image_group.left .image_wrapper{
+		float:left;
+		margin:0;
 	}
 	
 	.latest_banner .image_group.left .image_wrapper.item_no_1{
