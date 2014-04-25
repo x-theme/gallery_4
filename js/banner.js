@@ -89,6 +89,11 @@ $(function(){
 		$(".tablet_control .control_button .stop").addClass("enabled");
 		banner_interval = setInterval(function(){rotate_banner( total_banner )},1000);
 	});	
+	
+	/***********/
+	if( $(window).width() <= 640 ){
+		$(".banner_container .inner .banner .image_wrapper ").css("margin-right","0");		
+	}
 });
 
 function rotate_banner( total_banner ){
