@@ -9,6 +9,7 @@
 
 .layout .top {
 	max-width: 970px;
+	margin: 0 auto;
 }
 
 .layout .top, .layout .top a {
