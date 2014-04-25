@@ -35,6 +35,13 @@
 
 
 <link rel="stylesheet" href="<?=x::theme_url('css/after.css')?>">
+<? if ( etc::old_ie() ) { ?>
+	<style>
+		.footer .footer-logo {
+			width: 24.99%;
+		}
+	</style>
+<? } ?>
 <?	/**
 		Add max-width: 970px to .content div if current page is not index.
 	*/
