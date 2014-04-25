@@ -92,7 +92,7 @@ $(function(){
 	
 	/***********/
 	if( $(window).width() <= 640 ){
-		$(".banner_container .inner .banner .image_wrapper ").css("margin-right","0");		
+		$(".banner_container .inner .banner .image_wrapper").css("margin-right","0");		
 	}
 });
 
