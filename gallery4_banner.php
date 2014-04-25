@@ -73,11 +73,11 @@ else{
 				<img class='white_bg' banner_num ='<?=$white_img_count?>' style='left:<?=$white_img_count*100?>%' src='<?=x::theme_url('img/white_bg.png')?>'/>
 			<?}?>	
 		<?		
-			create_banner( $list, $total_banners );
+			create_banner( $list, $total_banners, $g5['write_prefix']);
 			for( $x = 0; $x <= $total_banners; $x ++ ){
-				create_banner($list, $x);
+				create_banner($list, $x, $g5['write_prefix']);
 			}
-			create_banner($list, 0);
+			create_banner($list, 0, $g5['write_prefix']);
 		?>
 		</div><!--/inner2-->
 	</div><!--/inner-->
@@ -142,11 +142,12 @@ else{
 		margin-right:0;
 	}
 	
+	
 </style>
 <?}?>
 
 <?
-function create_banner($list, $x){
+function create_banner($list, $x, $g5_write){
 ?>
 <div class='banner' banner_num = '<?=$x?>'>
 	<div class='latest_banner'>
@@ -159,16 +160,23 @@ function create_banner($list, $x){
 			if( $count == 3 || $count == 6 ) $no_margin_right = 'no-margin-right';
 			else $no_margin_right = null;
 	?>					
-			<?													
-				//echo "<script>alert('a $x');</script>";
-				if ( $list[$x][$i]['src'] == 'no_image'){					
-					$imgsrc_upper['src'] = x::url_theme().'/img/no_image_1.png';				
-					$no_image_upper = 'no_image';
-					$upper_content_length = 150;														
-				} else {						
+			<?																			
+				if ( $list[$x][$i]['src'] == 'no_image'){
+					$post_content = db::result("SELECT wr_content FROM ".$g5_write.$list[$x][$i]['bo_table']." WHERE wr_id='".$list[$x][$i]['wr_id']."'");
+					$image_from_tag = g::thumbnail_from_image_tag( $post_content, $_bo_table, 242.5, 230 );
+					
+					if( $image_from_tag ){
+						$imgsrc_upper['src'] = $image_from_tag;
+					}
+					else{
+						$imgsrc_upper['src'] = x::url_theme().'/img/no_image_1.png';				
+						$no_image_upper = 'no_image';
+						$upper_content_length = 150;
+					}
+				} else {					
 					$imgsrc_upper = get_list_thumbnail( $list[$x][$i]['bo_table'], $list[$x][$i]['wr_id'], 242.5, 230);														
 					$no_image_upper = null;
-					$upper_content_length = 80;
+					$upper_content_length = 80;					
 				}
 										
 				
@@ -203,10 +211,18 @@ function create_banner($list, $x){
 			?>
 		</div><!--/image_group left-->
 		<?								
-			if ( $list[$x][$total_list_items]['src'] == 'no_image' ){						
-				$imgsrc_last['src'] = x::url_theme().'/img/no_image_2.png';
-				$no_image_last = 'no_image';
-				$last_content_length = 150;						
+			if ( $list[$x][$i]['src'] == 'no_image'){
+				$post_content = db::result("SELECT wr_content FROM ".$g5_write.$list[$x][$i]['bo_table']." WHERE wr_id='".$list[$x][$i]['wr_id']."'");
+				$image_from_tag = g::thumbnail_from_image_tag( $post_content, $_bo_table, 242.5, 460 );
+				
+				if( $image_from_tag ){
+					$imgsrc_last['src'] = $image_from_tag;
+				}
+				else{
+					$imgsrc_last['src'] = x::url_theme().'/img/no_image_2.png';				
+					$no_image_last = 'no_image';
+					$upper_content_length = 150;
+				}
 			} else {											
 				$imgsrc_last = get_list_thumbnail( $list[$x][$i]['bo_table'], $list[$x][$i]['wr_id'], 242.5, 460);
 				$no_image_last = null;
