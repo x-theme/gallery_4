@@ -137,6 +137,11 @@ else{
 	.hidden_anchor{
 		display:block;
 	}
+	
+	.banner_container .inner .banner .image_wrapper{
+		margin-right:0;
+	}
+	
 </style>
 <?}?>
 
