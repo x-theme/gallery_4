@@ -162,10 +162,10 @@ function create_banner($list, $x, $g5_write){
 	?>					
 			<?																			
 				if ( $list[$x][$i]['src'] == 'no_image'){ 
-				echo "Post # $i : ";
-				di( $list[$x][$i] );
-					$post_content = db::result("SELECT wr_content FROM ".$g5_write.$list[$x][$i]['bo_table']." WHERE wr_id='".$list[$x][$i]['wr_id']."'");
-					$image_from_tag = g::thumbnail_from_image_tag( $post_content, $_bo_table, 242.5, 230 );
+					if ( ($list[$x][$i]['wr_id'] ) {
+						$post_content = db::result("SELECT wr_content FROM ".$g5_write.$list[$x][$i]['bo_table']." WHERE wr_id='".$list[$x][$i]['wr_id']."'");
+						$image_from_tag = g::thumbnail_from_image_tag( $post_content, $_bo_table, 242.5, 230 );
+					} else $image_from_tag = '';
 					
 					if( $image_from_tag ){
 						$imgsrc_upper['src'] = $image_from_tag;
