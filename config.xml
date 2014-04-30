@@ -33,14 +33,14 @@
 				<en>Gallery Posts</en>
 				<ko>왼쪽 메뉴</ko>
 			</name>
-			<max>10</max>
+			<max>0</max>
 		</left>
 		<right>
 			<name>
 				<en>Category Posts</en>
 				<ko>오른쪽 메뉴</ko>
 			</name>
-			<max>9</max>
+			<max>0</max>
 		</right>
 		<bottom>
 			<name>
